@@ -5,21 +5,14 @@ from django.urls import resolve
 
 from lists.views import home_page
 
+from django.template.loader import render_to_string
+
 
 class HomePageTest(TestCase):
     
     def test_home_page_returns_correct_html(self):
-        request = HttpRequest()
-        response = home_page(request)
-        doc_html = response.content.decode('utf8')
-
-        self.assertTrue(doc_html.startswith('<!DOCTYPE html>'))
-        self.assertIn('<title>To-Do lists</title>', doc_html)
-        self.assertTrue(doc_html.endswith('</html>'))
-
-    def test_root_url_resolves_to_home_page_view(self):
-        found = resolve('/')
-        self.assertEqual(found.func, home_page)
+        response = self.client.get('/')
+        self.assertTemplateUsed(response, 'home.html')
 
 
 class SmokeTest(TestCase):
