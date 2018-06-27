@@ -67,16 +67,14 @@ class NewVisitorTest(LiveServerTestCase):
 
         # The page updates again, and now shows both items on her list
         self.wait_for_row_in_list_table(
-            '2: Use the peacock feathers to make a fly')
-        self.wait_for_row_in_list_table('1: Buy peacock feathers')
-
+            '1: Use the peacock feathers to make a fly')
+            
         # Edith wonders whether the site will remember her list. Then she sees that
         # the site has generated a unique URL for her -- there is some explonatory text to that effect
 
         # She visits that URL - her to-do list is still there.
 
         # Satisfied, she goes back to sleep.
-        self.browser.quit()
 
     def test_multiple_users_can_start_lists_at_different_urls(self):
 

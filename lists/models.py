@@ -12,7 +12,7 @@ class Item(models.Model):
 
     text = models.TextField(default='')
 
-    list = models.ForeignKey(List, default=None)
+    list = models.ForeignKey(List)
 
     def __str__(self):
         return self.text
