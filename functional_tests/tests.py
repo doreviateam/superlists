@@ -64,7 +64,7 @@ class NewVisitorTest(StaticLiveServerTestCase):
         self.browser.get(self.live_server_url)
 
         # She enters "Use the peacock feathers to make a fly" (Edith is very methodical)
-        
+
         inputbox = self.browser.find_element_by_id('id_new_item')
         inputbox.send_keys('Use the peacock feathers to make a fly')
         inputbox.send_keys(Keys.ENTER)
@@ -96,7 +96,7 @@ class NewVisitorTest(StaticLiveServerTestCase):
 
         # Now a new user, Francis, comes along to the site
 
-        ## We use a new browser session to make sure that no information of Edith's is coming through from cookies ect....
+        #  We use a new browser session to make sure that no information of Edith's is coming through from cookies ect....
         self.browser.quit()
         self.browser = webdriver.Firefox()
 
@@ -112,7 +112,7 @@ class NewVisitorTest(StaticLiveServerTestCase):
         inputbox.send_keys(Keys.ENTER)
         self.wait_for_row_in_list_table('1: Buy milk')
 
-        # Francis gets his own unique URL 
+        # Francis gets his own unique URL
         francis_list_url = self.browser.current_url
         self.assertRegex(francis_list_url, '/lists/.+')
         self.assertNotEqual(francis_list_url, edith_list_url)
@@ -147,3 +147,6 @@ class NewVisitorTest(StaticLiveServerTestCase):
         self.assertAlmostEqual(
             inputbox.location['x'] + inputbox.size['width'] / 2, 512, delta=150
         )
+
+    def test_cannot_add_empty_list_items(self):
+        pass
